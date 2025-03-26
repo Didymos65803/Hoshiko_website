@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>星野的孩子 | Hoshiko </title>
+    <title>星野的孩子 | Hoshiko</title>
     <style>
         /* 基本樣式設置 */
         :root {
@@ -177,40 +177,6 @@
             max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* 專案概述區塊 */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .project-card {
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .project-image {
-            height: 200px;
-            background-size: cover;
-            background-position: center;
-        }
-        
-        .project-content {
-            padding: 1.5rem;
-        }
-        
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
         }
         
         /* 影響力數據區塊 */
@@ -389,6 +355,191 @@
                 min-width: 100%;
             }
         }
+        
+        /* 以下是新增的互動按鈕樣式 */
+        
+        /* 返回頂部按鈕 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* 漢堡選單按鈕 */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--primary-color);
+                align-items: center;
+                height: 0;
+                overflow: hidden;
+                transition: height 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                height: 300px;
+                padding: 1rem 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            body.menu-open {
+                overflow: hidden;
+            }
+            
+            .menu-toggle.active span:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            
+            .menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .menu-toggle.active span:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+        
+        /* 輪播圖樣式 */
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.4s ease;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 1rem;
+        }
+        
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        
+        .carousel-control:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .carousel-prev {
+            left: 20px;
+        }
+        
+        .carousel-next {
+            right: 20px;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 2;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -396,13 +547,18 @@
     <header>
         <nav>
             <div class="logo">星野的孩子</div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-links">
                 <li><a href="#">首頁</a></li>
-                <li><a href="#">關於我們</a></li>
-                <li><a href="#">計畫說明</a></li>
-                <li><a href="#">活動紀錄</a></li>
-                <li><a href="#">影響成果</a></li>
-                <li><a href="#">加入我們</a></li>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#projects">計畫說明</a></li>
+                <li><a href="#activities">活動紀錄</a></li>
+                <li><a href="#impact">影響成果</a></li>
+                <li><a href="#contact">聯絡我們</a></li>
             </ul>
         </nav>
     </header>
@@ -411,11 +567,11 @@
     <section class="hero">
         <h1>用天文與自然教育點亮偏鄉</h1>
         <p>我們是一群關心偏鄉教育的大學生，致力於將豐富的天文與STEM領域的知識與體驗帶給孩子們，啟發他們對自然的熱愛與對家鄉的認同。</p>
-        <a href="#" class="btn">了解更多</a>
+        <a href="#about" class="btn">了解更多</a>
     </section>
     
     <!-- 核心理念區域 -->
-    <section class="mission">
+    <section id="about" class="mission">
         <div class="container">
             <div class="section-title">
                 <h2>我們的理念</h2>
@@ -439,43 +595,50 @@
         </div>
     </section>
     
-    <!-- 專案概述區域 -->
-    <section>
+    <!-- 活動照片輪播 -->
+    <section id="projects">
         <div class="container">
             <div class="section-title">
-                <h2>我們的計畫</h2>
+                <h2>活動紀錄</h2>
             </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('/api/placeholder/400/300');"></div>
-                    <div class="project-content">
-                        <h3>森林探索計畫</h3>
-                        <p>帶領孩子們進入森林，認識本土植物、動物生態，培養環境觀察能力與保育意識。</p>
-                        <a href="#">查看詳情</a>
+            
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <img src="/api/placeholder/800/400" alt="活動照片1">
+                        <div class="carousel-caption">
+                            <h3>星空觀測營</h3>
+                            <p>帶領小朋友認識星座與天文知識</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/api/placeholder/800/400" alt="活動照片2">
+                        <div class="carousel-caption">
+                            <h3>科學實驗工作坊</h3>
+                            <p>透過互動實驗培養科學素養</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="/api/placeholder/800/400" alt="活動照片3">
+                        <div class="carousel-caption">
+                            <h3>自然探索之旅</h3>
+                            <p>探索在地生態，連結人與自然</p>
+                        </div>
                     </div>
                 </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('/api/placeholder/400/300');"></div>
-                    <div class="project-content">
-                        <h3>溪流生態調查</h3>
-                        <p>透過溪流生態調查活動，讓孩子理解水資源與生態系統的關係，學習科學調查方法。</p>
-                        <a href="#">查看詳情</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('/api/placeholder/400/300');"></div>
-                    <div class="project-content">
-                        <h3>環境藝術創作</h3>
-                        <p>結合自然素材與藝術創作，培養孩子的審美能力與創造力，同時認識自然材料的特性。</p>
-                        <a href="#">查看詳情</a>
-                    </div>
+                <div class="carousel-control carousel-prev">&lt;</div>
+                <div class="carousel-control carousel-next">&gt;</div>
+                <div class="carousel-indicators">
+                    <div class="carousel-indicator active"></div>
+                    <div class="carousel-indicator"></div>
+                    <div class="carousel-indicator"></div>
                 </div>
             </div>
         </div>
     </section>
     
     <!-- 影響力數據區域 -->
-    <section class="impact">
+    <section id="impact" class="impact">
         <div class="container">
             <div class="section-title">
                 <h2>我們的影響力</h2>
@@ -502,18 +665,18 @@
     </section>
     
     <!-- 最新動態區域 -->
-    <section class="news">
+    <section id="activities" class="news">
         <div class="container">
             <div class="section-title">
-                <h2>最新活動</h2>
+                <h2>最新動態</h2>
             </div>
             <div class="news-grid">
                 <div class="news-card">
                     <div class="news-image" style="background-image: url('/api/placeholder/400/300');"></div>
                     <div class="news-content">
                         <div class="news-date">2025年3月15日</div>
-                        <h3>春季森林探索營隊圓滿結束</h3>
-                        <p>為期三天的春季森林探索營隊在南投信義鄉順利完成，共有25名學生參與...</p>
+                        <h3>春季天文營隊圓滿結束</h3>
+                        <p>為期三天的春季天文營隊在南投信義鄉順利完成，共有25名學生參與...</p>
                         <a href="#">閱讀更多</a>
                     </div>
                 </div>
@@ -540,10 +703,10 @@
     </section>
     
     <!-- 頁尾區域 -->
-    <footer>
+    <footer id="contact">
         <div class="footer-content">
             <div class="footer-column">
-                <h3>自然教育工作隊</h3>
+                <h3>星野的孩子</h3>
                 <p>用教育連結城鄉，用自然啟發生命。</p>
                 <div class="social-links">
                     <a href="#"><span>FB</span></a>
@@ -554,17 +717,15 @@
             <div class="footer-column">
                 <h3>聯絡我們</h3>
                 <p>電子郵件：hoshikoplan@gmail.com</p>
-                
                 <p>地址：台北市大安區羅斯福路四段一號</p>
             </div>
             <div class="footer-column">
                 <h3>快速連結</h3>
                 <ul>
-                    <li><a href="#">關於我們</a></li>
-                    <li><a href="#">計畫說明</a></li>
-                    <li><a href="#">活動紀錄</a></li>
-                    <li><a href="#">影響成果</a></li>
-                    <li><a href="#">加入我們</a></li>
+                    <li><a href="#about">關於我們</a></li>
+                    <li><a href="#projects">計畫說明</a></li>
+                    <li><a href="#activities">活動紀錄</a></li>
+                    <li><a href="#impact">影響成果</a></li>
                 </ul>
             </div>
         </div>
@@ -572,5 +733,115 @@
             <p>&copy; 2025 星野的孩子 版權所有</p>
         </div>
     </footer>
+    
+    <!-- 返回頂部按鈕 -->
+    <div class="back-to-top">↑</div>
+    
+    <!-- JavaScript -->
+    <script>
+        // 返回頂部按鈕
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 漢堡選單控制
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const body = document.body;
+        
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+        
+        // 確保點擊導航鏈接後關閉菜單
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    body.classList.remove('menu-open');
+                }
+            });
+        });
+        
+        // 輪播圖控制
+        const carousel = document.querySelector('.carousel-inner');
+        const carouselItems = document.querySelectorAll('.carousel-item');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        const indicators = document.querySelectorAll('.carousel-indicator');
+        let currentIndex = 0;
+        
+        // 更新輪播位置和指示器狀態
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        // 上一張
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? carouselItems.length - 1 : currentIndex - 1;
+            updateCarousel();
+        });
+        
+        // 下一張
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex === carouselItems.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        });
+        
+        // 點擊指示器切換
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+            });
+        });
+        
+        // 自動輪播
+        setInterval(() => {
+            currentIndex = (currentIndex === carouselItems.length - 1) ? 0 : currentIndex + 1;
+            updateCarousel();
+        }, 5000);
+        
+        // 平滑滾動
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
