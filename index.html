@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自然教育工作隊 | 用教育連結城鄉</title>
+    <style>
+        /* 基本樣式設置 */
+        :root {
+            --primary-color: #3e8914;
+            --secondary-color: #a2d148;
+            --accent-color: #235789;
+            --text-color: #333;
+            --light-bg: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微軟正黑體", "Noto Sans TC", sans-serif;
+        }
+        
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--accent-color);
+        }
+        
+        /* 頁首樣式 */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* 首頁英雄區塊 */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        /* 內容區塊通用樣式 */
+        section {
+            padding: 4rem 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        /* 核心理念區塊 */
+        .mission {
+            background-color: var(--light-bg);
+        }
+        
+        .mission-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .mission-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+        }
+        
+        .mission-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .mission-image img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 專案概述區塊 */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        /* 影響力數據區塊 */
+        .impact {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+        }
+        
+        .impact .section-title h2 {
+            color: white;
+        }
+        
+        .impact .section-title h2::after {
+            background-color: white;
+        }
+        
+        .stats-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .stat-item .number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 最新動態區塊 */
+        .news {
+            background-color: white;
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .news-card {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .news-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* 頁尾樣式 */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 3rem 2rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .mission-content {
+                flex-direction: column;
+            }
+            
+            .mission-text, .mission-image {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 頁首區域 -->
+    <header>
+        <nav>
+            <div class="logo">自然教育工作隊</div>
+            <ul class="nav-links">
+                <li><a href="#">首頁</a></li>
+                <li><a href="#">關於我們</a></li>
+                <li><a href="#">計畫說明</a></li>
+                <li><a href="#">活動紀錄</a></li>
+                <li><a href="#">影響成果</a></li>
+                <li><a href="#">加入我們</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- 英雄區域 -->
+    <section class="hero">
+        <h1>用自然教育連結城鄉</h1>
+        <p>我們是一群關心偏鄉教育的大學生，致力於將豐富的自然知識與體驗帶給偏鄉的孩子們，啟發他們對自然的熱愛與對家鄉的認同。</p>
+        <a href="#" class="btn">了解更多</a>
+    </section>
+    
+    <!-- 核心理念區域 -->
+    <section class="mission">
+        <div class="container">
+            <div class="section-title">
+                <h2>我們的理念</h2>
+            </div>
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h3>連結自然與教育的橋樑</h3>
+                    <p>我們相信，自然是最好的教室，而教育是連結城鄉的橋樑。透過設計富有在地特色的自然教育課程，我們希望能夠：</p>
+                    <ul>
+                        <li>啟發孩子對自然環境的熱愛與好奇心</li>
+                        <li>培養孩子的環境保護意識與行動力</li>
+                        <li>增強他們對家鄉土地的認同感與歸屬感</li>
+                        <li>提供多元學習機會，彌補教育資源落差</li>
+                    </ul>
+                    <p>我們不只是短暫的教學活動，更希望能透過長期的陪伴與課程設計，在偏鄉地區種下自然教育的種子，讓它自然生長茁壯。</p>
+                </div>
+                <div class="mission-image">
+                    <img src="/api/placeholder/500/350" alt="自然教育活動照片">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 專案概述區域 -->
+    <section>
+        <div class="container">
+            <div class="section-title">
+                <h2>我們的計畫</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="project-content">
+                        <h3>森林探索計畫</h3>
+                        <p>帶領孩子們進入森林，認識本土植物、動物生態，培養環境觀察能力與保育意識。</p>
+                        <a href="#">查看詳情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="project-content">
+                        <h3>溪流生態調查</h3>
+                        <p>透過溪流生態調查活動，讓孩子理解水資源與生態系統的關係，學習科學調查方法。</p>
+                        <a href="#">查看詳情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="project-content">
+                        <h3>環境藝術創作</h3>
+                        <p>結合自然素材與藝術創作，培養孩子的審美能力與創造力，同時認識自然材料的特性。</p>
+                        <a href="#">查看詳情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 影響力數據區域 -->
+    <section class="impact">
+        <div class="container">
+            <div class="section-title">
+                <h2>我們的影響力</h2>
+            </div>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="number">15+</div>
+                    <div class="stat-title">偏鄉學校</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">500+</div>
+                    <div class="stat-title">受益學生</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">50+</div>
+                    <div class="stat-title">志工教師</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">30+</div>
+                    <div class="stat-title">課程方案</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 最新動態區域 -->
+    <section class="news">
+        <div class="container">
+            <div class="section-title">
+                <h2>最新活動</h2>
+            </div>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="news-content">
+                        <div class="news-date">2025年3月15日</div>
+                        <h3>春季森林探索營隊圓滿結束</h3>
+                        <p>為期三天的春季森林探索營隊在南投信義鄉順利完成，共有25名學生參與...</p>
+                        <a href="#">閱讀更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="news-content">
+                        <div class="news-date">2025年2月28日</div>
+                        <h3>2025年教師培訓工作坊</h3>
+                        <p>我們舉辦了為期兩天的教師培訓工作坊，培訓20名新進志工教師，為新學期做準備...</p>
+                        <a href="#">閱讀更多</a>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <div class="news-image" style="background-image: url('/api/placeholder/400/300');"></div>
+                    <div class="news-content">
+                        <div class="news-date">2025年1月20日</div>
+                        <h3>冬季自然觀察紀錄展</h3>
+                        <p>展出學生們在上學期的自然觀察紀錄與作品，吸引了許多當地居民與家長參觀...</p>
+                        <a href="#">閱讀更多</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 頁尾區域 -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>自然教育工作隊</h3>
+                <p>用教育連結城鄉，用自然啟發生命。</p>
+                <div class="social-links">
+                    <a href="#"><span>FB</span></a>
+                    <a href="#"><span>IG</span></a>
+                    <a href="#"><span>YT</span></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>聯絡我們</h3>
+                <p>電子郵件：contact@natureducation.org</p>
+                <p>電話：(02) 1234-5678</p>
+                <p>地址：台北市大安區某某路123號</p>
+            </div>
+            <div class="footer-column">
+                <h3>快速連結</h3>
+                <ul>
+                    <li><a href="#">關於我們</a></li>
+                    <li><a href="#">計畫說明</a></li>
+                    <li><a href="#">活動紀錄</a></li>
+                    <li><a href="#">影響成果</a></li>
+                    <li><a href="#">加入我們</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 自然教育工作隊 版權所有</p>
+        </div>
+    </footer>
+</body>
+</html>
